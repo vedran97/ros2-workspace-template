@@ -1,0 +1,4 @@
+---
+nlohmann-json3-dev:
+  ubuntu:
+    apt: [nlohmann-json3-dev]

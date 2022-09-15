@@ -1,0 +1,180 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "c++: Run Static Analysis",
+            "detail": "Run static code checker cppcheck.",
+            "type": "shell",
+            "command": "ament_cppcheck --language=c++ src/",
+            "presentation": {
+                "panel": "dedicated",
+                "reveal": "silent",
+                "clear": true
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                {
+                    "owner": "cppcheck",
+                    "source": "cppcheck",
+                    "severity": "warning",
+                    "pattern": [
+                        {
+                            "regexp": "^\\[(.+):(\\d+)\\]:\\s+(.+)$",
+                            "file": 1,
+                            "line": 2,
+                            "message": 3
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "label": "C++: Run Linters",
+            "detail": "Lint files with uncrustify and cpplint",
+            "type": "shell",
+            "command": "ament_uncrustify --language=C++ src/; ament_cpplint src/",
+            "presentation": {
+                "panel": "dedicated",
+                "reveal": "silent",
+                "clear": true
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                {
+                    "owner": "uncrustify",
+                    "source": " uncrustify",
+                    "fileLocation": "relative",
+                    "severity": "info",
+                    "pattern": [
+                    /// just the file name message
+                        {
+                            "regexp": "^(.*)'(.*)':",
+                            "kind": "file",
+                            "file": 2,
+                            "message": 1
+                        },
+                  ]
+                },
+                {
+                    "owner": "cpplint",
+                    "source": " cpplint",
+                    "fileLocation": "absolute",
+                    "severity": "info",
+                    "pattern": [
+                        {
+                            "regexp": "^(.+):(\\d+):\\s+(.+)\\[(.+)\\]$",
+                            "file": 1,
+                            "line": 2,
+                            "message": 3,
+                            "code": 4
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "label": "ROS: Run Unit-Test",
+            "detail": "Runs a unit test",
+            "type": "shell",
+            "command": "${workspaceFolder}/build/${input:package}/${input:test}",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": "$gcc",
+            "presentation" : {
+                "panel":"dedicated"
+            }
+        },
+        {
+            "label": "ROS: Build  Package",
+            "detail": "Builds All or a Single package in ROS Workspace",
+            "type": "shell",
+            "command": "./scripts/build.sh ${input:buildMode} ${input:package}",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": "$gcc",
+            "presentation" : {
+                "panel":"dedicated"
+            }
+        },
+        {
+            "label": "ROS: Clean",
+            "detail": "Clean the Workspace Build Area",
+            "type": "shell",
+            "command": "./scripts/clean.sh",
+            "problemMatcher": "$gcc",
+            "group": "build",
+            "presentation" : {
+                "panel":"dedicated"
+            }
+        },
+        {
+            "label": "ROS: Install ROS dependencies",
+            "detail": "Download all repositories required for the workspace",
+            "type": "shell",
+            "command": "./scripts/install-dependencies.sh",
+            "problemMatcher": [],
+            "group": "build",
+            "presentation" : {
+                "panel":"dedicated"
+            }
+        },
+    ],
+    "inputs": [
+        {
+        "id": "package",
+        "type": "command",
+        "command": "memento.promptString",
+        "args" : {
+            "id" : "package",
+            "description" : "Ros2 Package Name",
+            "default" : "",
+            "placeholder": "Ros2 Package Name"
+        }
+        },
+        {
+            "id": "buildMode",
+            "type": "command",
+            "command": "memento.pickString",
+            "args" : {
+                "id" : "buildMode",
+                "description": "Build mode",
+                "options" : ["Debug", "Release"],
+                "default": "Debug"
+            }
+        },
+        {
+            "id": "test",
+            "type": "command",
+            "command": "memento.promptString",
+            "args" : {
+                "id" : "test",
+                "description" : "Test Name",
+                "default" : "",
+                "placeholder": "Test Name"
+                }
+        },
+        {
+        "id": "sanatizer",
+        "type": "command",
+        "command": "memento.pickString",
+        "args" : {
+            "id" : "sanatizer",
+            "description": "Sanatizer Type",
+            "options" : ["Thread", "Address"],
+            "default": "Address"
+        }
+    }
+    ]
+}

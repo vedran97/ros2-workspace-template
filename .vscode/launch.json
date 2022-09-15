@@ -1,0 +1,85 @@
+{
+    "configurations": [
+        {
+            "name": "ROS: Attach",
+            "type": "ros",
+            "request": "attach"
+        },
+        {
+            "name": "ROS: Launch Executable",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/install/${input:package}/lib/${input:package}/${input:node}",
+            "args": [],
+            "stopAtEntry": true,
+            "cwd": "${workspaceFolder}",
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],      
+        },
+        {
+            "name": "ROS: Launch Test",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/${input:package}/${input:test}",
+            "args": [],
+            "stopAtEntry": true,
+            "cwd": "${workspaceFolder}",
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],      
+        },
+    ],
+    "inputs": [
+        {
+        "id": "package",
+        "type": "command",
+        "command": "memento.promptString",
+        "args" : {
+            "id" : "package",
+            "description" : "Ros2 Package Name",
+            "default" : "",
+            "placeholder": "Ros2 Package Name"
+            }
+        },
+        {
+        "id": "node",
+        "type": "command",
+        "command": "memento.promptString",
+        "args" : {
+            "id" : "node",
+            "description" : "Ros2 Node Name",
+            "default" : "",
+            "placeholder": "Ros2 Node Name"
+            }
+        },
+        {
+            "id": "test",
+            "type": "command",
+            "command": "memento.promptString",
+            "args" : {
+                "id" : "test",
+                "description" : "Test Name",
+                "default" : "",
+                "placeholder": "Test Name"
+                }
+        },
+        {
+            "id": "launchFile",
+            "type": "promptString",
+            "description": "Launch File"
+        }
+    ]
+}
