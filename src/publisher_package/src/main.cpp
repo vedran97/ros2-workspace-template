@@ -14,7 +14,7 @@ class CustomTopicPublisher : public rclcpp::Node
   public:
   using NextPositionData= topic_package::msg::NextPosition;
     CustomTopicPublisher()
-    : Node("custom_topic_publisher"), count_(0)
+    : Node("CustomTopicPublisher"), count_(0)
     {
       publisher_ = this->create_publisher<NextPositionData>(NextPositionData::TOPIC_NAME, 10);
       timer_ = this->create_wall_timer(
