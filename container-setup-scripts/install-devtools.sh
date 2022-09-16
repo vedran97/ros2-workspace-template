@@ -10,7 +10,8 @@ apt-get install -y ros-foxy-ament-lint python3-autopep8
 apt-get install -y ros-foxy-launch-testing ros-foxy-launch-testing-ament-cmake ros-foxy-launch-testing-ros
 apt-get install -y nano
 apt-get install -y htop
-
+apt-get install -y python3-bloom python3-rosdep fakeroot
+apt-get install -y dpkg-dev debhelper
 sudo apt-get install -y lcov
 pip3 install colcon-mixin
 pip3 install colcon-common-extensions
