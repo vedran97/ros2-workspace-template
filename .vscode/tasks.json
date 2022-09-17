@@ -130,6 +130,20 @@
                 "panel":"dedicated"
             }
         },
+        {
+            "label": "C++: Run Sanatizer",
+            "detail": "Runs Asan or Tsan and generates report",
+            "type": "shell",
+            "command": "./scripts/sanatize.sh ${input:sanatizer} ${input:buildMode} ${input:package}",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": "$gcc",
+            "presentation" : {
+                "panel":"dedicated"
+            }
+        },
     ],
     "inputs": [
         {

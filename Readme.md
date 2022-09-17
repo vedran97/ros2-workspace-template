@@ -41,6 +41,4 @@
 1. Once done building quit the terminal session, open a new terminal instance(Ctrl+Shift+`), which will run ./bashrc configuration again and source all the recently built packages for you 
 2. This allows you to directly use "ros2 run package_name node_name" without specifically sourcing anything
 3. Enjoy!
-
-
     
