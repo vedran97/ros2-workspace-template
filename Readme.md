@@ -22,12 +22,20 @@
     > ``` code . ```
 8. A VSCode popup should arise which says "Open folder in Container" where you choose Yes OR press F1,search for "Open Folder in Container" and execute the command
 9. Now wait for the build process to finish, once it's completed, you have a fully functional ROS2 workspace with example packages
+11. When the container is built for the first time, a error will popup saying "Failed to enable ROS Extension" , just choose the reload window option
+10. Set up ROS dependencies using the following section
 
 # Setting up ROS-Dependencies :
 
-1. Once the repo is opened in a container, you have to install ros2-dependencies. To do this, follow these steps:
+1. Once the repo is opened in a container, you have to install ROS2-dependencies. To do this, follow these steps:
     1. Press "Ctrl+Shift+B" to run VSCode tasks popup, choose "ROS: Install dependencies" option from it. 
-    2. Wait for installation to finish,once it is done, now you can ho ahead and build the packages inside the repos
+    2. Wait for installation to finish,once it is done, now you can go ahead and install sanitization dependencies
+
+# Setting up Sanitizers :
+
+1. Press "Ctrl+Shift+B" to run VSCode tasks popup, choose "C++: Install Sanitizer dependencies" option from it. 
+2. Wait for installation to finish,once it is done, now you can go ahead and build the packages inside the repos
+    
 
 # Building Packages : 
 

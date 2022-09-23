@@ -12,7 +12,9 @@ apt-get install -y nano
 apt-get install -y htop
 apt-get install -y python3-bloom python3-rosdep fakeroot
 apt-get install -y dpkg-dev debhelper
-sudo apt-get install -y lcov
+apt-get install -y lcov
+apt-get update
+apt-get install ros-foxy-gazebo-ros-pkgs
 pip3 install colcon-mixin
 pip3 install colcon-common-extensions
 pip3 install colcon-lcov-result

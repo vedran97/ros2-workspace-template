@@ -41,12 +41,12 @@ ARG USER_GID=$USER_UID
 
 # Create a non-root user
 RUN /container-setup-scripts/create-user.sh $USERNAME $USER_UID $USER_GID\
-  # Cleanup
-  && rm -rf /var/lib/apt/lists/* \
-  && rm -rf /container-setup-scripts \
   && echo "source /usr/share/bash-completion/completions/git" >> /home/$USERNAME/.bashrc \
-  && echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> /home/$USERNAME/.bashrc
+  && echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> /home/$USERNAME/.bashrc 
 
+# Cleanup
+RUN rm -rf /var/lib/apt/lists/* \
+    && rm -rf /container-setup-scripts
 
 RUN apt-get update \
    && apt-get autoremove -y \

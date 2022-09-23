@@ -131,6 +131,17 @@
             }
         },
         {
+            "label": "C++: Install Sanitizer dependencies",
+            "detail": "Install all Sanitizir required for the workspace",
+            "type": "shell",
+            "command": "./scripts/install-asan.sh",
+            "problemMatcher": [],
+            "group": "build",
+            "presentation" : {
+                "panel":"dedicated"
+            }
+        },
+        {
             "label": "C++: Run Sanatizer",
             "detail": "Runs Asan or Tsan and generates report",
             "type": "shell",

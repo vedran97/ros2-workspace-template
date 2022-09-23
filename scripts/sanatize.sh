@@ -18,22 +18,25 @@ fi
 
 if [ "$build_type" = "Release" ]
 then
-    echo "Using Release Configuration"
     cmake_args="$cmake_args -DCMAKE_BUILD_TYPE=RelWithDebInfo"
 else
-    echo "Using Debug Configuration"
     cmake_args="$cmake_args -DCMAKE_BUILD_TYPE=Debug"
 fi
 
 if [ "$sanatizer" = "Thread" ]
 then
-    echo "Running Thread Sanatizer"
     sanitizer="tsan"
     sanitizer_args="--build-base=build --install-base=install"
 else
-    echo "Running Address Sanatizer"
     sanitizer="asan-gcc"
     sanitizer_args="--build-base=build --install-base=install"
+fi
+
+if [ "$build_type" = "Release" ]
+then
+    echo "Using Release Configuration"
+else
+    echo "Using Debug Configuration"
 fi
 
 colcon build \
@@ -43,5 +46,16 @@ colcon build \
     $package_select\
     --symlink-install
 
+if [ "$sanatizer" = "Thread" ]
+then
+    echo "Running Thread Sanatizer"
+else
+    echo "Running Address Sanatizer"
+fi
+
 colcon test $sanitizer_args \
     --event-handlers sanitizer_report+ $package_select 
+
+cd ../log/latest_test
+# Displays three lines after the beginning of a ASAN reported issue.
+grep -R '==.*==ERROR: .*Sanitizer' -A 3
