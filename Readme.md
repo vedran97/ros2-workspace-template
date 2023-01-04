@@ -49,4 +49,10 @@
 1. Once done building quit the terminal session, open a new terminal instance(Ctrl+Shift+`), which will run ./bashrc configuration again and source all the recently built packages for you 
 2. This allows you to directly use "ros2 run package_name node_name" without specifically sourcing anything
 3. Enjoy!
-    
+
+# How do you reuse it ? :
+
+1. Once you have cloned this repository and want to use it for your own project , first change this directory's name to whatever you want
+2. Change line 55 of Dockerfile `ARG WORKSPACE=/workspaces/ros2-template-workspace` to `ARG WORKSPACE=/workspaces/your_workspace_name`
+3. cd to this now renamed directory and delete the git artifacts by `sudo rm -rf .git` and then you are free to initialize your own git repository
+4. Follow the  Initial Setup headline's from step 6    

@@ -4,4 +4,3 @@ log
 roslogs
 sanitizer_report.csv
 test_results.xml
-*.txt
