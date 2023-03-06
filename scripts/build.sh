@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 build_type="$1"
 package_name="$2"
@@ -25,4 +25,5 @@ else
     cmake_args="$cmake_args -DCMAKE_BUILD_TYPE=Debug"
 fi
 
-colcon build --symlink-install $package_select --cmake-args $cmake_args $compiler_warnings
+let parallel_workers=$(nproc)/2
+colcon build --symlink-install $package_select --cmake-args $cmake_args $compiler_warnings --parallel-workers $parallel_workers

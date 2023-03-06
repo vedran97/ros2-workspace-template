@@ -2,7 +2,8 @@
 	"dockerFile": "../Dockerfile",
 	"build": {
 		"args": {
-			"WORKSPACE": "${containerWorkspaceFolder}"
+			"WORKSPACE": "${containerWorkspaceFolder}",
+			"BUILDKIT_INLINE_CACHE": "0"
 		}
 	},
 	"runArgs": [
